@@ -3,7 +3,10 @@
     <div class="navbar__container">
       <div class="navbar__brand">K.H.</div>
       <div
-        :class="['navbar__menu-icon', { 'navbar__menu-icon--open': isNavOpen }]"
+        :class="[
+          'navbar__menu-icon',
+          { 'navbar__menu-icon--open': isMenuOpen }
+        ]"
         @click="toggleNav"
       >
         <span></span>
@@ -12,7 +15,15 @@
       </div>
     </div>
 
-    <div class="navbar__mobile-menu">
+    <div
+      :class="['navbar__overlay', { 'navbar__overlay--open': isMenuOpen }]"
+    ></div>
+    <div
+      :class="[
+        'navbar__mobile-menu',
+        { 'navbar__mobile-menu--open': isMenuOpen }
+      ]"
+    >
       <ul class="navbar__media-list">
         <li class="navbar__media-item"><i class="fab fa-instagram"></i></li>
         <li class="navbar__media-item"><i class="fab fa-twitter"></i></li>
@@ -29,12 +40,12 @@
 export default {
   data: function() {
     return {
-      isNavOpen: false
+      isMenuOpen: false
     };
   },
   methods: {
     toggleNav() {
-      this.isNavOpen = !this.isNavOpen;
+      this.isMenuOpen = !this.isMenuOpen;
     }
   }
 };
@@ -49,6 +60,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
   }
 
   &__brand {
@@ -57,7 +69,53 @@ export default {
   }
 
   &__mobile-menu {
-    display: none;
+    padding: 1.5rem 2rem;
+    position: absolute;
+    width: 70%;
+    height: 100%;
+    background-color: $green;
+    right: -100%;
+    top: 0;
+    transition: 0.5s ease-out;
+
+    &--open {
+      right: 0;
+    }
+  }
+
+  &__media-list {
+    list-style: none;
+    background-color: $pink;
+    width: 8.75rem;
+    height: 2.75rem;
+    border-radius: 0.4375rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__links {
+    list-style: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    margin-top: 2.8rem;
+    text-align: center;
+  }
+
+  &__overlay {
+    position: absolute;
+    left: 0;
+    top: -100%;
+    width: 30%;
+    height: 100%;
+    background-color: $pink;
+    opacity: 0.7;
+    transition: 0.5s ease-out;
+
+    &--open {
+      top: 0;
+    }
   }
 
   &__menu-icon {
@@ -67,6 +125,7 @@ export default {
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
     cursor: pointer;
+    z-index: 10;
 
     span {
       display: block;
