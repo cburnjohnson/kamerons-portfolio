@@ -2,7 +2,10 @@
   <nav class="navbar">
     <div class="navbar__container">
       <div class="navbar__brand">K.H.</div>
-      <div class="navbar__menu-icon">
+      <div
+        :class="['navbar__menu-icon', { 'navbar__menu-icon--open': isNavOpen }]"
+        @click="toggleNav"
+      >
         <span></span>
         <span></span>
         <span></span>
@@ -23,7 +26,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data: function() {
+    return {
+      isNavOpen: false
+    };
+  },
+  methods: {
+    toggleNav() {
+      this.isNavOpen = !this.isNavOpen;
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -52,10 +66,6 @@ export default {};
     -moz-transform: rotate(0deg);
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
-    -webkit-transition: 0.5s ease-in-out;
-    -moz-transition: 0.5s ease-in-out;
-    -o-transition: 0.5s ease-in-out;
-    transition: 0.5s ease-in-out;
     cursor: pointer;
 
     span {
@@ -76,6 +86,31 @@ export default {};
 
       &:nth-child(2) {
         margin: 0.25rem 0;
+      }
+    }
+
+    &--open {
+      span {
+        position: absolute;
+
+        &:nth-child(1) {
+          -webkit-transform: rotate(135deg);
+          -moz-transform: rotate(135deg);
+          -o-transform: rotate(135deg);
+          transform: rotate(135deg);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+          margin: 0;
+        }
+
+        &:nth-child(3) {
+          -webkit-transform: rotate(-135deg);
+          -moz-transform: rotate(-135deg);
+          -o-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+        }
       }
     }
   }
