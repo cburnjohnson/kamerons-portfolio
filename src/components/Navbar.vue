@@ -1,11 +1,11 @@
 <template>
-  <nav class="navbar">
-    <div class="navbar__container">
-      <div class="navbar__brand">K.H.</div>
+  <nav class="navbar-mobile">
+    <div class="navbar-mobile__container">
+      <div class="navbar-mobile__brand">K.H.</div>
       <div
         :class="[
-          'navbar__menu-icon',
-          { 'navbar__menu-icon--open': isMenuOpen }
+          'navbar-mobile__menu-icon',
+          { 'navbar-mobile__menu-icon--open': isMenuOpen }
         ]"
         @click="toggleNav"
       >
@@ -16,21 +16,30 @@
     </div>
 
     <div
-      :class="['navbar__overlay', { 'navbar__overlay--open': isMenuOpen }]"
+      :class="[
+        'navbar-mobile__overlay',
+        { 'navbar-mobile__overlay--open': isMenuOpen }
+      ]"
     ></div>
     <div
       :class="[
-        'navbar__mobile-menu',
-        { 'navbar__mobile-menu--open': isMenuOpen }
+        'navbar-mobile__mobile-menu',
+        { 'navbar-mobile__mobile-menu--open': isMenuOpen }
       ]"
     >
-      <ul class="navbar__media-list">
-        <li class="navbar__media-item"><i class="fab fa-instagram"></i></li>
-        <li class="navbar__media-item"><i class="fab fa-twitter"></i></li>
-        <li class="navbar__media-item"><i class="fab fa-linkedin-in"></i></li>
+      <ul class="navbar-mobile__media-list">
+        <li class="navbar-mobile__media-item">
+          <i class="fab fa-instagram"></i>
+        </li>
+        <li class="navbar-mobile__media-item">
+          <i class="fab fa-twitter"></i>
+        </li>
+        <li class="navbar-mobile__media-item">
+          <i class="fab fa-linkedin-in"></i>
+        </li>
       </ul>
-      <ul class="navbar__links">
-        <li class="navbar__link">Events</li>
+      <ul class="navbar-mobile__links">
+        <li class="navbar-mobile__link">Events</li>
       </ul>
     </div>
   </nav>
@@ -52,7 +61,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.navbar {
+.navbar-mobile {
   background-color: $green;
   padding: 1.25rem 2rem;
 
@@ -106,15 +115,15 @@ export default {
   &__overlay {
     position: absolute;
     left: 0;
-    top: -100%;
+    top: 0;
     width: 30%;
     height: 100%;
     background-color: $pink;
-    opacity: 0.7;
-    transition: 0.5s ease-out;
+    opacity: 0;
+    transition: 0.5s ease-in;
 
     &--open {
-      top: 0;
+      opacity: 0.7;
     }
   }
 
