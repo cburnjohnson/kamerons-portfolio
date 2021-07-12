@@ -70,7 +70,7 @@ export default {
 
   &__mobile-menu {
     padding: 1.5rem 2rem;
-    position: absolute;
+    position: fixed;
     width: 70%;
     height: 100%;
     background-color: $green;
