@@ -11,11 +11,6 @@
         <button class="hero__cta">View Events</button>
       </section>
       <section class="hero__right">
-        <!-- <img
-          src="@/assets/hero-img.png"
-          alt="Decorated weddding table"
-          class="hero__img"
-        /> -->
         <div class="hero__img">
           <div class="hero__img-overlay"></div>
         </div>
