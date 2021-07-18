@@ -27,6 +27,7 @@ export default {};
 .hero {
   position: relative;
   z-index: -1;
+  height: 100%;
 
   @media ($md-up) {
     height: 100%;
@@ -38,12 +39,13 @@ export default {};
     position: relative;
     max-width: 375px;
     margin: 0 auto;
+    height: 100%;
+    justify-content: space-between;
 
     @media ($md-up) {
       flex-direction: row;
       max-width: 100%;
       flex-basis: 100%;
-      height: 100%;
     }
   }
 
@@ -101,7 +103,7 @@ export default {};
   &__portrait {
     position: absolute;
     top: -2.1rem;
-    right: -2rem;
+    right: 2rem;
 
     @media ($md-up) {
       top: -2.1rem;

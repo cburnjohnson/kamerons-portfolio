@@ -1,17 +1,34 @@
 <template>
-  <nav class="navbar-mobile">
-    <div class="navbar-mobile__container">
-      <div class="navbar-mobile__brand">K.H.</div>
-      <div
-        :class="[
-          'navbar-mobile__menu-icon',
-          { 'navbar-mobile__menu-icon--open': isMenuOpen }
-        ]"
-        @click="toggleNav"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
+  <nav class="navbar">
+    <div class="navbar__container">
+      <div class="navbar__brand">K.H.</div>
+      <div class="navbar__right">
+        <div
+          :class="[
+            'navbar-mobile__menu-icon',
+            { 'navbar-mobile__menu-icon--open': isMenuOpen }
+          ]"
+          @click="toggleNav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <ul class="navbar__links">
+          <li class="navbar__link">Events</li>
+        </ul>
+        <ul class="navbar__media-list">
+          <li class="navbar__media-item">
+            <i class="fab fa-instagram"></i>
+          </li>
+          <li class="navbar__media-item">
+            <i class="fab fa-twitter"></i>
+          </li>
+          <li class="navbar__media-item">
+            <i class="fab fa-linkedin-in"></i>
+          </li>
+        </ul>
       </div>
     </div>
 
@@ -61,9 +78,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.navbar-mobile {
+.navbar {
   background-color: $green;
   padding: 1.25rem 2rem;
+
+  @media ($md-up) {
+    padding: 1.25rem 64px;
+  }
 
   &__container {
     display: flex;
@@ -72,6 +93,32 @@ export default {
     position: relative;
     max-width: 700px;
     margin: 0 auto;
+
+    @media ($md-up) {
+      max-width: 100%;
+    }
+  }
+
+  &__right {
+    position: realtive;
+    z-index: 10;
+    @media ($md-up) {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+    }
+  }
+
+  &__links {
+    list-style: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    display: none;
+
+    @media ($md-up) {
+      display: block;
+    }
   }
 
   &__brand {
@@ -79,6 +126,23 @@ export default {
     font-size: 2.75rem;
   }
 
+  &__media-list {
+    list-style: none;
+    background-color: $pink;
+    width: 8.75rem;
+    height: 2.75rem;
+    border-radius: 0.4375rem;
+    justify-content: space-around;
+    align-items: center;
+    display: none;
+
+    @media ($md-up) {
+      display: flex;
+    }
+  }
+}
+
+.navbar-mobile {
   &__mobile-menu {
     padding: 1.5rem 2rem;
     position: fixed;
@@ -92,17 +156,6 @@ export default {
     &--open {
       right: 0;
     }
-  }
-
-  &__media-list {
-    list-style: none;
-    background-color: $pink;
-    width: 8.75rem;
-    height: 2.75rem;
-    border-radius: 0.4375rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
   }
 
   &__links {
@@ -129,6 +182,17 @@ export default {
     }
   }
 
+  &__media-list {
+    list-style: none;
+    background-color: $pink;
+    width: 8.75rem;
+    height: 2.75rem;
+    border-radius: 0.4375rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
   &__menu-icon {
     width: 30px;
     -webkit-transform: rotate(0deg);
@@ -137,6 +201,10 @@ export default {
     transform: rotate(0deg);
     cursor: pointer;
     z-index: 10;
+
+    @media ($md-up) {
+      display: none;
+    }
 
     span {
       display: block;
