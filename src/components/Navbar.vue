@@ -70,6 +70,8 @@ export default {
     justify-content: space-between;
     align-items: center;
     position: relative;
+    max-width: 700px;
+    margin: 0 auto;
   }
 
   &__brand {

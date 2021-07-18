@@ -27,6 +27,8 @@ export default {};
 .hero {
   position: relative;
   z-index: -1;
+  max-width: 375px;
+  margin: 0 auto;
 
   &__flex {
     display: flex;
