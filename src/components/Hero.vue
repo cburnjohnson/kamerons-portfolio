@@ -27,24 +27,52 @@ export default {};
 .hero {
   position: relative;
   z-index: -1;
-  max-width: 375px;
-  margin: 0 auto;
+
+  @media ($md-up) {
+    height: 100%;
+  }
 
   &__flex {
     display: flex;
     flex-direction: column;
     position: relative;
+    max-width: 375px;
+    margin: 0 auto;
+
+    @media ($md-up) {
+      flex-direction: row;
+      max-width: 100%;
+      flex-basis: 100%;
+      height: 100%;
+    }
   }
 
   &__left {
     margin-top: 5.6875rem;
     padding: 0rem 1.375rem;
+    position: relative;
+
+    @media ($md-up) {
+      flex: 1 1 50%;
+      margin-top: 122px;
+      padding: 0rem 84px;
+    }
+  }
+
+  &__right {
+    @media ($md-up) {
+      flex: 1 1 50%;
+    }
   }
 
   &__intro {
     font-size: 1.125rem;
     color: $green;
     margin-left: 0.625rem;
+
+    @media ($md-up) {
+      font-size: 24px;
+    }
   }
 
   &__name {
@@ -52,21 +80,40 @@ export default {};
     font-size: 5.94rem;
     color: $pink;
     line-height: 0.875;
+
+    @media ($md-up) {
+      font-size: 180px;
+      margin-top: 1rem;
+    }
   }
 
   &__text {
     color: $green;
     text-align: center;
     margin-top: 1rem;
+
+    @media ($md-up) {
+      font-size: 18px;
+      margin-top: 1.2rem;
+    }
   }
 
   &__portrait {
     position: absolute;
-    top: 2.1rem;
-    right: 2rem;
+    top: -2.1rem;
+    right: -2rem;
+
+    @media ($md-up) {
+      top: -2.1rem;
+      right: 4rem;
+    }
 
     img {
       width: 4.875rem;
+
+      @media ($md-up) {
+        width: 100px;
+      }
     }
 
     &::before {
@@ -88,6 +135,11 @@ export default {};
         rgba(247, 204, 192, 0.869019) 82.81%,
         rgba(255, 255, 255, 0) 100%
       );
+
+      @media ($md-up) {
+        width: 110px;
+        height: 110px;
+      }
     }
   }
 
@@ -104,6 +156,13 @@ export default {};
     border-radius: 1.56rem;
     margin-top: 3rem;
     margin-left: auto;
+
+    @media ($md-up) {
+      font-size: 20px;
+      padding: 24px 30px;
+      border-radius: 36.5px;
+      margin-top: 50px;
+    }
   }
 
   &__img {
@@ -116,6 +175,16 @@ export default {};
     background-position: center;
     position: relative;
 
+    @media ($md-up) {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      background-repeat: no-repeat;
+      background-position: initial;
+      background-size: cover;
+    }
+
     &-overlay {
       width: 553px;
       height: 360px;
@@ -123,6 +192,12 @@ export default {};
       position: absolute;
       background-color: $pink;
       opacity: 0.7;
+
+      @media ($md-up) {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+      }
     }
   }
 }
