@@ -2,13 +2,15 @@
   <section class="hero">
     <div class="hero__flex">
       <section class="hero__left">
-        <p class="hero__intro">Hi, I am</p>
-        <div class="hero__portrait">
-          <img src="@/assets/portrait.png" alt="portrait" />
+        <div class="hero__container">
+          <p class="hero__intro">Hi, I am</p>
+          <div class="hero__portrait">
+            <img src="@/assets/portrait.png" alt="portrait" />
+          </div>
+          <p class="hero__name">Kameron Holmberg</p>
+          <p class="hero__text">Event planner</p>
+          <button class="hero__cta">View Events</button>
         </div>
-        <p class="hero__name">Kameron Holmberg</p>
-        <p class="hero__text">Event planner</p>
-        <button class="hero__cta">View Events</button>
       </section>
       <section class="hero__right">
         <div class="hero__img">
@@ -52,12 +54,19 @@ export default {};
   &__left {
     margin-top: 5.6875rem;
     padding: 0rem 1.375rem;
-    position: relative;
 
     @media ($md-up) {
       flex: 1 1 50%;
       margin-top: 122px;
       padding: 0rem 84px;
+    }
+  }
+
+  &__container {
+    position: relative;
+    @media ($md-up) {
+      max-width: 800px;
+      margin: 0 auto;
     }
   }
 
