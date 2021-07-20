@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar">
     <div class="navbar__container">
-      <div class="navbar__brand">K.H.</div>
+      <router-link class="navbar__brand" to="/">K.H.</router-link>
       <div class="navbar__right">
         <div
           :class="[
@@ -16,7 +16,9 @@
         </div>
 
         <ul class="navbar__links">
-          <li class="navbar__link">Events</li>
+          <li class="navbar__link">
+            <router-link to="/events">Events</router-link>
+          </li>
         </ul>
         <ul class="navbar__media-list">
           <li class="navbar__media-item">
@@ -56,7 +58,9 @@
         </li>
       </ul>
       <ul class="navbar-mobile__links">
-        <li class="navbar-mobile__link">Events</li>
+        <li class="navbar-mobile__link">
+          <router-link to="/events">Events</router-link>
+        </li>
       </ul>
     </div>
   </nav>
@@ -72,6 +76,9 @@ export default {
   methods: {
     toggleNav() {
       this.isMenuOpen = !this.isMenuOpen;
+    },
+    navigateToHome() {
+      console.log("uo");
     }
   }
 };
@@ -84,6 +91,11 @@ export default {
 
   @media ($md-up) {
     padding: 1.25rem 64px;
+  }
+
+  a {
+    color: $white;
+    text-decoration: none;
   }
 
   &__container {
@@ -124,6 +136,9 @@ export default {
   &__brand {
     font-family: $cursive;
     font-size: 2.75rem;
+    cursor: pointer;
+    position: relative;
+    z-index: 20;
   }
 
   &__media-list {
