@@ -1,18 +1,16 @@
 <template>
   <div id="main-container">
     <Navbar />
-    <Hero />
+    <router-view />
   </div>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
 
 export default {
   components: {
-    Navbar,
-    Hero
+    Navbar
   }
 };
 </script>
