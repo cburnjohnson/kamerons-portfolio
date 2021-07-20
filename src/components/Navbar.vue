@@ -100,8 +100,8 @@ export default {
   }
 
   &__right {
-    position: realtive;
-    z-index: 10;
+    position: relative;
+    z-index: 20;
     @media ($md-up) {
       display: flex;
       gap: 50px;
@@ -151,6 +151,7 @@ export default {
     background-color: $green;
     right: -100%;
     top: 0;
+    z-index: 10;
     transition: 0.5s ease-out;
 
     &--open {
@@ -176,6 +177,7 @@ export default {
     background-color: $pink;
     opacity: 0;
     transition: 0.5s ease-in;
+    z-index: 10;
 
     &--open {
       opacity: 0.7;
@@ -200,7 +202,6 @@ export default {
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
     cursor: pointer;
-    z-index: 10;
 
     @media ($md-up) {
       display: none;

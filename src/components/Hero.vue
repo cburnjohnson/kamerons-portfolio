@@ -9,7 +9,9 @@
           </div>
           <p class="hero__name">Kameron Holmberg</p>
           <p class="hero__text">Event planner</p>
-          <button class="hero__cta">View Events</button>
+          <button class="hero__cta" @click="openViewEventsPage">
+            View Events
+          </button>
         </div>
       </section>
       <section class="hero__right">
@@ -22,13 +24,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    openViewEventsPage() {
+      console.log("yo");
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 .hero {
   position: relative;
-  z-index: -1;
   height: 100%;
 
   @media ($md-up) {
@@ -156,7 +163,6 @@ export default {};
 
   &__cta {
     border: none;
-    background: none;
     display: block;
     cursor: pointer;
     color: $white;
@@ -173,6 +179,10 @@ export default {};
       padding: 24px 30px;
       border-radius: 36.5px;
       margin-top: 50px;
+    }
+
+    &:hover {
+      opacity: 0.8;
     }
   }
 
