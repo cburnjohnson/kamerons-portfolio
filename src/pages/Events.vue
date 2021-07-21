@@ -55,25 +55,21 @@ export default {
 }
 
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  grid-gap: 10px;
-  padding: 0px 1rem;
-  height: 500px;
-  overflow-y: auto;
+  padding: 10px;
+  line-height: 0;
+  -webkit-column-count: 4;
+  -webkit-column-gap: 0px;
+  -moz-column-count: 4;
+  -moz-column-gap: 0px;
+  column-count: 4;
+  column-gap: 0px;
+  // max-height: 100%;
+  overflow: auto;
 
   &__img {
-    max-width: 100%;
-    border: 10px;
-    position: relative;
-    z-index: 30;
-    transition: transform 250ms;
-    cursor: pointer;
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 3px 3px 10px black;
-    }
+    width: 100% !important;
+    height: auto !important;
+    padding: 4px;
   }
 }
 
