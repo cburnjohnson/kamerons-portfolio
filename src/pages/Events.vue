@@ -1,15 +1,17 @@
 <template>
   <fragment>
     <h1 class="title">Image Gallery</h1>
-    <div class="gallery">
-      <img
-        class="gallery__img"
-        :src="require(`../assets/events/${imgNum}.jpg`)"
-        alt=""
-        v-for="imgNum in imgNums"
-        :key="imgNum"
-        @click="openPopup(require(`../assets/events/${imgNum}.jpg`))"
-      />
+    <div class="gallery-container">
+      <div class="gallery">
+        <img
+          class="gallery__img"
+          :src="require(`../assets/events/${imgNum}.jpg`)"
+          alt=""
+          v-for="imgNum in imgNums"
+          :key="imgNum"
+          @click="openPopup(require(`../assets/events/${imgNum}.jpg`))"
+        />
+      </div>
     </div>
     <div class="popup" ref="popup" @click="closePopup">
       <img src="" alt="" class="popup__img" ref="popupImg" />
@@ -54,22 +56,33 @@ export default {
   margin: 1rem 0px;
 }
 
+.gallery-container {
+  max-height: 100%;
+  overflow-y: auto;
+  max-width: 80%;
+  margin: 0 auto;
+
+  @media ($md-up) {
+    max-width: 90%;
+  }
+}
+
 .gallery {
-  padding: 10px;
-  line-height: 0;
-  -webkit-column-count: 4;
-  -webkit-column-gap: 0px;
-  -moz-column-count: 4;
-  -moz-column-gap: 0px;
-  column-count: 4;
-  column-gap: 0px;
-  // max-height: 100%;
-  overflow: auto;
+  width: 100%;
+  display: column;
+  columns: 2;
+
+  @media ($md-up) {
+    columns: 4;
+  }
+
+  & > * {
+    break-inside: avoid;
+    margin-bottom: 0.5em;
+  }
 
   &__img {
-    width: 100% !important;
-    height: auto !important;
-    padding: 4px;
+    max-width: 100%;
   }
 }
 
