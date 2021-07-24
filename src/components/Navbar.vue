@@ -193,7 +193,7 @@ export default {
     opacity: 0;
     transition: 0.5s ease-in;
     z-index: 10;
-    display: none;
+    pointer-events: none;
 
     &--open {
       opacity: 0.7;
