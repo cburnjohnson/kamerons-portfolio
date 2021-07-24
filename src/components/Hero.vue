@@ -9,9 +9,11 @@
           </div>
           <p class="hero__name">Kameron Holmberg</p>
           <p class="hero__text">Event planner</p>
-          <button class="hero__cta" @click="openViewEventsPage">
-            View Events
-          </button>
+          <router-link to="/events">
+            <button class="hero__cta">
+              View Events
+            </button>
+          </router-link>
         </div>
       </section>
       <section class="hero__right">
@@ -24,13 +26,7 @@
 </template>
 
 <script>
-export default {
-  methods: {
-    openViewEventsPage() {
-      console.log("yo");
-    }
-  }
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>
@@ -40,6 +36,10 @@ export default {
 
   @media ($md-up) {
     height: 100%;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   &__flex {
