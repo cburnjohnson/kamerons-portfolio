@@ -3,26 +3,36 @@
     <div class="events__container">
       <div class="events__nav">
         <ul class="events__types">
-          <li class="events__type">Birthday</li>
-          <li class="events__type">Weddings</li>
+          <li
+            v-for="eventType in eventTypes"
+            :key="eventType"
+            class="events__type"
+            @click="setEventType(eventType)"
+          >
+            {{ eventType }}
+          </li>
         </ul>
         <ul class="events__names">
-          <li class="events__name">Jimmy's Birthday</li>
-          <li class="events__name">Jimmy's Birthday</li>
-          <li class="events__name">Jimmy's Birthday</li>
-          <li class="events__name">Jimmy's Birthday</li>
+          <li
+            class="events__name"
+            v-for="eventByType in eventsByType"
+            :key="eventByType.id"
+            @click="selectEvent(eventByType)"
+          >
+            {{ eventByType.name }}
+          </li>
         </ul>
       </div>
       <div class="gallery-container">
-        <h1 class="title">Image Gallery</h1>
+        <h1 class="title">{{ selectedEvent.name }}</h1>
         <div class="gallery">
           <img
+            v-for="eventImg in selectedEvent.eventImgs"
+            :key="eventImg"
             class="gallery__img"
-            :src="require(`../assets/events/${imgNum}.jpg`)"
+            :src="require(`../assets/events/${eventImg}.jpg`)"
             alt=""
-            v-for="imgNum in imgNums"
-            :key="imgNum"
-            @click="openPopup(require(`../assets/events/${imgNum}.jpg`))"
+            @click="openPopup(require(`../assets/events/${eventImg}.jpg`))"
           />
         </div>
       </div>
@@ -42,8 +52,44 @@ export default {
   },
   data() {
     return {
-      imgNums: [1, 2, 3, 4, 5, 6, 7, 8]
+      currentEventType: "birthday",
+      events: [
+        {
+          id: 1,
+          name: "Jimmys Bday",
+          eventType: "birthday",
+          eventImgs: [1, 2, 3]
+        },
+        {
+          id: 2,
+          name: "Jimmys Wedding",
+          eventType: "wedding",
+          eventImgs: [4, 5, 6]
+        },
+        {
+          id: 3,
+          name: "Jimmys 3rd Wedding",
+          eventType: "wedding",
+          eventImgs: [7, 8]
+        }
+      ],
+      selectedEvent: {
+        id: 1,
+        name: "Jimmys Bday",
+        eventType: "birthday",
+        eventImgs: [1, 2, 3]
+      }
     };
+  },
+  computed: {
+    eventTypes() {
+      return [...new Set(this.events.map(event => event.eventType))];
+    },
+    eventsByType() {
+      return this.events.filter(event => {
+        return event.eventType === this.currentEventType;
+      });
+    }
   },
   methods: {
     openPopup(imgSrc) {
@@ -56,6 +102,12 @@ export default {
       popup.style.transform = "translateY(-100%)";
       popupImg.src = "";
       popupImg.alt = "";
+    },
+    setEventType(eventType) {
+      this.currentEventType = eventType;
+    },
+    selectEvent(selectedEvent) {
+      this.selectedEvent = selectedEvent;
     }
   }
 };
