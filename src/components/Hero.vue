@@ -59,12 +59,11 @@ export default {};
   }
 
   &__left {
-    margin-top: 5.6875rem;
+    margin-top: 4rem;
     padding: 0rem 1.375rem;
 
     @media ($md-up) {
       flex: 1 1 50%;
-      margin-top: 122px;
       padding: 0rem 84px;
     }
   }
@@ -175,10 +174,8 @@ export default {};
     margin-left: auto;
 
     @media ($md-up) {
-      font-size: 20px;
-      padding: 24px 30px;
+      padding: 20px 30px;
       border-radius: 36.5px;
-      margin-top: 50px;
     }
 
     &:hover {
