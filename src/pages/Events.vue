@@ -130,6 +130,15 @@ export default {
     text-transform: uppercase;
     font-weight: 700;
 
+    li {
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        color: $pink;
+      }
+    }
+
     @media ($md-up) {
       width: 25%;
     }

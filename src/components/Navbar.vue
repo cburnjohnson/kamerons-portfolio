@@ -96,6 +96,12 @@ export default {
   a {
     color: $white;
     text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      color: $pink;
+    }
   }
 
   &__container {
@@ -125,7 +131,7 @@ export default {
     list-style: none;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     display: none;
 
     @media ($md-up) {

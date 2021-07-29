@@ -86,10 +86,6 @@ export default {};
     font-size: 1.125rem;
     color: $green;
     margin-left: 0.625rem;
-
-    @media ($md-up) {
-      font-size: 24px;
-    }
   }
 
   &__name {
