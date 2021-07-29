@@ -13,3 +13,69 @@ html {
   font-family: 'Poppins', sans-serif;
   color: $white;
 }
+
+// Form Global Styling
+.form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &:first-child {
+    margin-bottom: 2.5rem;
+  }
+
+  &--align {
+    align-items: center;
+  }
+
+  &__label {
+    font-size: 0.8rem;
+    position: absolute;
+    top: -0.25rem;
+    transition: top 0.3s;
+    color: $white;
+
+    &--file {
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+  }
+
+  &__input {
+    background-color: $pink;
+    border: none;
+    border-bottom: 3px solid $green;
+    outline: none;
+    color: $white;
+    font-size: 1rem;
+
+    &:focus,
+    &:active,
+    &:not(:placeholder-shown) {
+      + .form-group__label {
+        top: -1rem;
+      }
+    }
+  }
+
+  &__btn {
+    display: inline-block;
+    outline: none;
+    border: none;
+    padding: 0.75rem 1.75rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 70%;
+    margin: 1.75rem auto 0 auto;
+    background-color: $pink;
+    color: $white;
+    border: 3px solid $green;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    border-radius: 0.5rem;
+
+    &:hover {
+      background-color: $green;
+    }
+  }
+}
