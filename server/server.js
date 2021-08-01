@@ -80,7 +80,7 @@ app.get('/', (req, res) => {
 // @desc Uploads file to DB
 // can upload multiple files
 app.post('/upload', upload.single('file'), (req, res) => {
-  res.redirect('/');
+  res.send('File uploaded');
 });
 
 // @route GET /files
@@ -125,7 +125,6 @@ app.get('/image/:filename', (req, res) => {
         err: 'No file exist',
       });
     }
-    console.log(file.contentType);
     // Check if image
     if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
       // Read output to browser

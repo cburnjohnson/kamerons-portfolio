@@ -1,13 +1,14 @@
 <template>
   <div class="admin">
     <h1 class="admin__title">Upload Events</h1>
-    <form class="admin__form">
+    <form class="admin__form" @submit="addEvent">
       <div class="form-group">
         <input
           type="text"
           id="name"
           class="form-group__input"
           placeholder=" "
+          ref="eventName"
         />
         <label for="name" class="form-group__label">Name of Event</label>
       </div>
@@ -20,6 +21,7 @@
           name="images"
           id="images"
           class="form-group__file"
+          ref="eventImages"
           multiple
         />
       </div>
@@ -29,7 +31,26 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+
+export default {
+  methods: {
+    async addEvent(e) {
+      e.preventDefault();
+      const { eventName, eventImages } = this.$refs;
+      console.log(eventName, eventImages);
+      const eventImagesFiles = eventImages.files[0];
+      let formData = new FormData();
+      formData.append("file", eventImagesFiles);
+
+      await axios.post("upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
