@@ -25,7 +25,12 @@ const mongoURI = process.env.MONGO_URI;
 
 // create mongo connection
 connectDB();
-const conn = mongoose.createConnection(mongoURI);
+const conn = mongoose.createConnection(mongoURI, {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+});
 
 // init gfs
 let gfs;
