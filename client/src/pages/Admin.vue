@@ -45,6 +45,8 @@ export default {
         formData.append("files", file);
       });
 
+      formData.append("eventName", eventName.value);
+
       await axios.post("upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data"

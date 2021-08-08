@@ -8,6 +8,9 @@ const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 const methodOverride = require('method-override');
+const connectDB = require('./config/db');
+
+const Event = require('./models/Event');
 
 const app = express();
 
@@ -21,6 +24,7 @@ app.use(methodOverride('_method'));
 const mongoURI = process.env.MONGO_URI;
 
 // create mongo connection
+connectDB();
 const conn = mongoose.createConnection(mongoURI);
 
 // init gfs
@@ -81,8 +85,24 @@ app.get('/', (req, res) => {
 // @route POST /upload
 // @desc Uploads file to DB
 // can upload multiple files
-app.post('/upload', upload.array('files', 20), (req, res) => {
-  res.json({ msg: 'Files uploaded' });
+app.post('/upload', upload.array('files', 20), async (req, res) => {
+  const fileNames = req.files.map((file) => file.filename);
+
+  const { eventName } = req.body;
+
+  try {
+    const newEvent = new Event({
+      name: eventName,
+      images: fileNames,
+    });
+
+    const event = await newEvent.save();
+
+    res.json(event);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ msg: 'Server Error' });
+  }
 });
 
 // @route GET /files
