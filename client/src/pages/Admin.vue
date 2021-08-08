@@ -39,15 +39,19 @@ export default {
       e.preventDefault();
       const { eventName, eventImages } = this.$refs;
       console.log(eventName, eventImages);
-      const eventImagesFiles = eventImages.files[0];
+      const eventImagesFiles = Array.from(eventImages.files);
       let formData = new FormData();
-      formData.append("file", eventImagesFiles);
+      eventImagesFiles.forEach(file => {
+        formData.append("files", file);
+      });
 
       await axios.post("upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
       });
+
+      eventImages.value = null;
     }
   }
 };

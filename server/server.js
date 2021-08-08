@@ -40,10 +40,12 @@ const storage = new GridFsStorage({
         if (err) {
           return reject(err);
         }
+        // add event name here
         const filename = buf.toString('hex') + path.extname(file.originalname);
         const fileInfo = {
           filename: filename,
           bucketname: 'fs',
+          aliases: req.body.eventName,
         };
         resolve(fileInfo);
       });
@@ -79,8 +81,8 @@ app.get('/', (req, res) => {
 // @route POST /upload
 // @desc Uploads file to DB
 // can upload multiple files
-app.post('/upload', upload.single('file'), (req, res) => {
-  res.send('File uploaded');
+app.post('/upload', upload.array('files', 20), (req, res) => {
+  res.json({ msg: 'Files uploaded' });
 });
 
 // @route GET /files
