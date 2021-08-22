@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <form class="login__form" @submit="onLogin">
+    <form class="login__form" @submit.prevent="onLogin">
       <div class="form-group">
         <input
           class="form-group__input"
@@ -8,6 +8,7 @@
           name="username"
           id="username"
           placeholder=" "
+          v-model="username"
         />
         <label for="username" class="form-group__label">Username</label>
       </div>
@@ -18,6 +19,7 @@
           name="password"
           id="password"
           placeholder=" "
+          v-model="password"
         />
         <label for="password" class="form-group__label">Password</label>
       </div>
@@ -28,10 +30,24 @@
 
 <script>
 export default {
+  data() {
+    return {
+      username: null,
+      password: null
+    };
+  },
   methods: {
-    onLogin(e) {
-      e.preventDefault();
-      console.log("yo");
+    onLogin() {
+      if (
+        process.env.VUE_APP_USERNAME === this.username &&
+        process.env.VUE_APP_PASSWORD === this.password
+      ) {
+        const localStorage = window.localStorage;
+        localStorage.setItem("userAuthenticated", true);
+        this.$router.push({ name: "Admin" });
+      } else {
+        console.log("error");
+      }
     }
   }
 };

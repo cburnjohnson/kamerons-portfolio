@@ -27,7 +27,16 @@ export default new Router({
     {
       path: '/admin',
       name: 'Admin',
-      component: Admin
+      component: Admin,
+      beforeEnter(to, from, next) {
+        if (window.localStorage.getItem('userAuthenticated')) {
+          next();
+        } else {
+          next({
+            name: 'Login'
+          });
+        }
+      }
     }
   ]
 });
