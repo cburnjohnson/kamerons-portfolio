@@ -1,16 +1,38 @@
 <template>
   <div class="admin">
     <h1 class="admin__title">Upload Events</h1>
-    <form class="admin__form" @submit="addEvent">
+    <form class="admin__form" @submit.prevent="addEvent">
       <div class="form-group">
         <input
           type="text"
           id="name"
           class="form-group__input"
           placeholder=" "
-          ref="eventName"
+          v-model="eventName"
+          required
         />
         <label for="name" class="form-group__label">Name of Event</label>
+      </div>
+      <h2>Type of Event</h2>
+      <div class="form-group form-group--radio">
+        <div class="form-group__child">
+          <label for="birthday">Birthday</label>
+          <input
+            type="radio"
+            name="typeOfEvent"
+            value="birthday"
+            v-model="eventType"
+          />
+        </div>
+        <div class="form-group__child">
+          <label for="wedding">Wedding</label>
+          <input
+            type="radio"
+            name="typeOfEvent"
+            value="wedding"
+            v-model="eventType"
+          />
+        </div>
       </div>
       <div class="form-group form-group--align">
         <label for="images" class="form-group__label--file"
@@ -34,18 +56,24 @@
 import axios from "axios";
 
 export default {
+  data() {
+    return {
+      eventName: null,
+      eventType: "birthday"
+    };
+  },
   methods: {
-    async addEvent(e) {
-      e.preventDefault();
-      const { eventName, eventImages } = this.$refs;
-      console.log(eventName, eventImages);
+    async addEvent() {
+      const { eventImages } = this.$refs;
+
       const eventImagesFiles = Array.from(eventImages.files);
       let formData = new FormData();
       eventImagesFiles.forEach(file => {
         formData.append("files", file);
       });
 
-      formData.append("eventName", eventName.value);
+      formData.append("eventName", this.eventName);
+      formData.append("eventType", this.eventType);
 
       await axios.post("upload", formData, {
         headers: {
@@ -83,6 +111,18 @@ export default {
 .form-group {
   &:first-child {
     margin-bottom: 1rem;
+  }
+
+  &--radio {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0.5rem 0;
+
+    label {
+      margin-right: 0.25rem;
+    }
   }
 }
 </style>

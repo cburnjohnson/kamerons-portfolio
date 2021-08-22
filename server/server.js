@@ -93,11 +93,12 @@ app.get('/', (req, res) => {
 app.post('/upload', upload.array('files', 20), async (req, res) => {
   const fileNames = req.files.map((file) => file.filename);
 
-  const { eventName } = req.body;
+  const { eventName, eventType } = req.body;
 
   try {
     const newEvent = new Event({
       name: eventName,
+      type: eventType,
       images: fileNames,
     });
 
