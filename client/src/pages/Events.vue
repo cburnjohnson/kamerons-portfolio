@@ -1,28 +1,7 @@
 <template>
   <fragment>
     <div class="events__container">
-      <div class="events__nav">
-        <ul class="events__types">
-          <li
-            v-for="eventType in eventTypes"
-            :key="eventType"
-            class="events__type"
-            @click="setEventType(eventType)"
-          >
-            {{ eventType }}
-          </li>
-        </ul>
-        <ul class="events__names">
-          <li
-            class="events__name"
-            v-for="eventByType in eventsByType"
-            :key="eventByType.id"
-            @click="selectEvent(eventByType)"
-          >
-            {{ eventByType.name }}
-          </li>
-        </ul>
-      </div>
+      <EventsNav :events="events" @selectEvent="selectEvent" />
       <div class="gallery-container">
         <h1 class="title">{{ selectedEvent.name }}</h1>
         <div class="gallery">
@@ -45,14 +24,15 @@
 
 <script>
 import { Fragment } from "vue-fragment";
+import EventsNav from "@/components/events/EventsNav";
 
 export default {
   components: {
-    Fragment
+    Fragment,
+    EventsNav
   },
   data() {
     return {
-      currentEventType: "birthday",
       events: [
         {
           id: 1,
@@ -81,16 +61,6 @@ export default {
       }
     };
   },
-  computed: {
-    eventTypes() {
-      return [...new Set(this.events.map(event => event.eventType))];
-    },
-    eventsByType() {
-      return this.events.filter(event => {
-        return event.eventType === this.currentEventType;
-      });
-    }
-  },
   methods: {
     openPopup(imgSrc) {
       const { popup, popupImg } = this.$refs;
@@ -102,9 +72,6 @@ export default {
       popup.style.transform = "translateY(-100%)";
       popupImg.src = "";
       popupImg.alt = "";
-    },
-    setEventType(eventType) {
-      this.currentEventType = eventType;
     },
     selectEvent(selectedEvent) {
       this.selectedEvent = selectedEvent;
@@ -122,25 +89,6 @@ export default {
 
     @media ($md-up) {
       flex-direction: row-reverse;
-    }
-  }
-
-  &__nav {
-    background-color: $green;
-    text-transform: uppercase;
-    font-weight: 700;
-
-    li {
-      cursor: pointer;
-      transition: 0.2s ease-in-out;
-
-      &:hover {
-        color: $pink;
-      }
-    }
-
-    @media ($md-up) {
-      width: 25%;
     }
   }
 
