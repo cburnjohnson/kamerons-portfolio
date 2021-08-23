@@ -33,11 +33,11 @@ export default {
   props: ["events"],
   computed: {
     eventTypes() {
-      return [...new Set(this.events.map(event => event.eventType))];
+      return [...new Set(this.events.map(event => event.type))];
     },
     eventsByType() {
       return this.events.filter(event => {
-        return event.eventType === this.currentEventType;
+        return event.type === this.currentEventType;
       });
     }
   },

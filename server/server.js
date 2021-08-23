@@ -63,6 +63,9 @@ const storage = new GridFsStorage({
 });
 const upload = multer({ storage });
 
+// Routes
+app.use('/api/events', require('./routes/events'));
+
 // @route GET /
 // @desc Loads form
 app.get('/', (req, res) => {
@@ -145,7 +148,7 @@ app.get('/files/:filename', (req, res) => {
 
 // @route GET /image/:filename
 // @desc  Display image
-app.get('/image/:filename', (req, res) => {
+app.get('/api/image/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // check if file exists
     if (!file || file.length === 0) {

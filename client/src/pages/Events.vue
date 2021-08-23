@@ -2,14 +2,14 @@
   <fragment>
     <div class="events__container">
       <EventsNav :events="events" @selectEvent="selectEvent" />
-      <div class="gallery-container">
+      <div class="gallery-container" v-if="selectedEvent">
         <h1 class="title">{{ selectedEvent.name }}</h1>
         <div class="gallery">
           <img
-            v-for="eventImg in selectedEvent.eventImgs"
-            :key="eventImg"
+            v-for="image in selectedImages"
+            :key="image"
             class="gallery__img"
-            :src="require(`../assets/events/${eventImg}.jpg`)"
+            :src="image"
             alt=""
             @click="openPopup(require(`../assets/events/${eventImg}.jpg`))"
           />
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import { Fragment } from "vue-fragment";
 import EventsNav from "@/components/events/EventsNav";
 
@@ -33,35 +34,30 @@ export default {
   },
   data() {
     return {
-      events: [
-        {
-          id: 1,
-          name: "Jimmys Bday",
-          eventType: "birthday",
-          eventImgs: [1, 2, 3]
-        },
-        {
-          id: 2,
-          name: "Jimmys Wedding",
-          eventType: "wedding",
-          eventImgs: [4, 5, 6]
-        },
-        {
-          id: 3,
-          name: "Jimmys 3rd Wedding",
-          eventType: "wedding",
-          eventImgs: [7, 8]
-        }
-      ],
-      selectedEvent: {
-        id: 1,
-        name: "Jimmys Bday",
-        eventType: "birthday",
-        eventImgs: [1, 2, 3]
-      }
+      events: [],
+      selectedEvent: null,
+      selectedImages: []
     };
   },
+  created() {
+    this.getEvents();
+  },
   methods: {
+    async getEvents() {
+      const res = await axios.get("/api/events");
+      this.events = [...this.events, ...res.data];
+
+      this.selectedEvent = res.data[0];
+    },
+    async getImage(filename) {
+      const res = await axios.get(`/api/image/${filename}`, {
+        responseType: "arraybuffer"
+      });
+      const base64ImageString = Buffer.from(res.data, "binary").toString(
+        "base64"
+      );
+      return `data:image/png;base64,${base64ImageString}`;
+    },
     openPopup(imgSrc) {
       const { popup, popupImg } = this.$refs;
       popup.style.transform = "translateY(0)";
@@ -75,6 +71,15 @@ export default {
     },
     selectEvent(selectedEvent) {
       this.selectedEvent = selectedEvent;
+    }
+  },
+  watch: {
+    selectedEvent() {
+      this.selectedEvent.images.forEach(async image => {
+        const res = await this.getImage(image);
+
+        this.selectedImages = [...this.selectedImages, res];
+      });
     }
   }
 };
