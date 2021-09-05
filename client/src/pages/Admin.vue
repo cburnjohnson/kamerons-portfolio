@@ -45,6 +45,7 @@
           class="form-group__file"
           ref="eventImages"
           multiple
+          required
         />
       </div>
       <input type="submit" value="UPLOAD" class="form-group__btn" />
