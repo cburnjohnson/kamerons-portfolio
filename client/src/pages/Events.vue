@@ -11,7 +11,7 @@
             class="gallery__img"
             :src="image"
             alt=""
-            @click="openPopup(require(`../assets/events/${eventImg}.jpg`))"
+            @click="openPopup(image)"
           />
         </div>
       </div>
@@ -75,6 +75,7 @@ export default {
   },
   watch: {
     selectedEvent() {
+      this.selectedImages = [];
       this.selectedEvent.images.forEach(async image => {
         const res = await this.getImage(image);
 
