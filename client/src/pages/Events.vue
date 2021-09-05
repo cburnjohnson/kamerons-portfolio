@@ -1,7 +1,11 @@
 <template>
   <fragment>
     <div class="events__container">
-      <EventsNav :events="events" @selectEvent="selectEvent" />
+      <EventsNav
+        :events="events"
+        :selectedEvent="selectedEvent"
+        @selectEvent="selectEvent"
+      />
       <div class="gallery-container" v-if="selectedEvent">
         <h1 class="title">{{ selectedEvent.name }}</h1>
         <div class="gallery">
@@ -96,37 +100,6 @@ export default {
     @media ($md-up) {
       flex-direction: row-reverse;
     }
-  }
-
-  &__types {
-    display: flex;
-    list-style: none;
-    flex-wrap: wrap;
-    text-align: center;
-    border-bottom: 2px solid $pink;
-    border-top: 2px solid $pink;
-  }
-
-  &__type {
-    width: calc(100% / 3);
-    padding: 0.5rem 0;
-    border-right: 2px solid $pink;
-  }
-
-  &__names {
-    list-style: none;
-    text-align: center;
-    max-height: 110px;
-    overflow-y: auto;
-
-    @media ($md-up) {
-      max-height: 100%;
-    }
-  }
-
-  &__name {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid $pink;
   }
 }
 

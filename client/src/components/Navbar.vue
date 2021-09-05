@@ -88,6 +88,7 @@ export default {
 .navbar {
   background-color: $green;
   padding: 1.25rem 2rem;
+  border-bottom: 5px solid $pink;
 
   @media ($md-up) {
     padding: 1.25rem 64px;
@@ -160,6 +161,10 @@ export default {
     @media ($md-up) {
       display: flex;
     }
+  }
+
+  .router-link-exact-active {
+    color: $pink;
   }
 }
 
