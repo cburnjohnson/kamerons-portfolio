@@ -27,7 +27,6 @@ router.delete('/:id', async (req, res) => {
 
     if (!event) res.status(404).json({ msg: 'Event not found' });
 
-    console.log(event.images);
     event.images.forEach(async (image) => {
       const imageDoc = await getImage(req, image);
 

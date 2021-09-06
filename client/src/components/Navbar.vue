@@ -100,9 +100,6 @@ export default {
   methods: {
     toggleNav() {
       this.isMenuOpen = !this.isMenuOpen;
-    },
-    navigateToHome() {
-      console.log("uo");
     }
   }
 };
