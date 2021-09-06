@@ -22,13 +22,28 @@
         </ul>
         <ul class="navbar__media-list">
           <li class="navbar__media-item">
-            <i class="fab fa-instagram"></i>
+            <a
+              href="https://www.instagram.com/kameronholmberg/"
+              target="_blank"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
           </li>
           <li class="navbar__media-item">
-            <i class="fab fa-twitter"></i>
+            <a
+              href="https://www.instagram.com/kameronholmberg/"
+              target="_blank"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
           </li>
           <li class="navbar__media-item">
-            <i class="fab fa-linkedin-in"></i>
+            <a
+              href="https://www.linkedin.com/in/kameron-holmberg-a788231a3/"
+              target="_blank"
+            >
+              <i class="fab fa-linkedin-in"></i>
+            </a>
           </li>
         </ul>
       </div>
@@ -48,13 +63,22 @@
     >
       <ul class="navbar-mobile__media-list">
         <li class="navbar-mobile__media-item">
-          <i class="fab fa-instagram"></i>
+          <a href="https://www.instagram.com/kameronholmberg/" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
         </li>
         <li class="navbar-mobile__media-item">
-          <i class="fab fa-twitter"></i>
+          <a href="https://www.instagram.com/kameronholmberg/" target="_blank">
+            <i class="fab fa-twitter"></i>
+          </a>
         </li>
         <li class="navbar-mobile__media-item">
-          <i class="fab fa-linkedin-in"></i>
+          <a
+            href="https://www.linkedin.com/in/kameron-holmberg-a788231a3/"
+            target="_blank"
+          >
+            <i class="fab fa-linkedin-in"></i>
+          </a>
         </li>
       </ul>
       <ul class="navbar-mobile__links">
