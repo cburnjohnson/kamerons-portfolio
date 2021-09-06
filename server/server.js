@@ -11,6 +11,7 @@ const methodOverride = require('method-override');
 const connectDB = require('./config/db');
 
 const Event = require('./models/Event');
+const { pid } = require('process');
 
 const app = express();
 
@@ -38,6 +39,8 @@ let gfs;
 conn.once('open', () => {
   gfs = Grid(conn.db, mongoose.mongo);
   gfs.collection('fs');
+
+  app.locals.gfs = gfs;
 });
 
 // Create storage
@@ -184,3 +187,5 @@ app.delete('/files/:id', (req, res) => {
 const PORT = 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
+module.exports = app;

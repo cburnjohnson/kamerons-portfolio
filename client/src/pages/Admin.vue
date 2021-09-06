@@ -100,7 +100,8 @@ export default {
       eventImages.value = null;
     },
     async deleteEvent(id) {
-      console.log(id);
+      await axios.delete(`/api/events/${id}`);
+      this.events = this.events.filter(event => event._id !== id);
     }
   },
   async created() {
