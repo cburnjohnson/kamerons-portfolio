@@ -185,12 +185,12 @@ app.delete('/files/:id', (req, res) => {
 });
 
 // Serve static assets in production
-if (process.env.NODE_ENV === 'production') {
-  // Set static folder
-  app.use(express.static('client/dist'));
+const trajectory = path.resolve();
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(trajectory, 'client/dist')));
   app.get('*', (req, res) =>
-    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'))
+    res.sendFile(path.resolve(trajectory, 'dist', 'index.html'))
   );
 }
 
