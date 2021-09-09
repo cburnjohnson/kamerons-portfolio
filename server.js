@@ -65,30 +65,6 @@ const upload = multer({ storage });
 // Routes
 app.use('/api/events', require('./routes/events'));
 
-// @route GET /
-// @desc Loads form
-app.get('/', (req, res) => {
-  gfs.files.find().toArray((err, files) => {
-    // check if files exist
-    if (!files || files.length === 0) {
-      res.render('index', { files: false });
-    } else {
-      files.map((file) => {
-        if (
-          file.contentType === 'image/jpeg' ||
-          file.contentType === 'image/png'
-        ) {
-          file.isImage = true;
-        } else {
-          file.isImage = false;
-        }
-      });
-
-      res.render('index', { files: files });
-    }
-  });
-});
-
 // @route POST /upload
 // @desc Uploads file to DB
 // can upload multiple files
@@ -181,12 +157,11 @@ app.delete('/files/:id', (req, res) => {
 });
 
 // Serve static assets in production
-const trajectory = path.resolve();
-
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(trajectory, 'client/dist')));
+  // Set static folder
+  app.use(express.static('client/dist'));
   app.get('*', (req, res) =>
-    res.sendFile(path.resolve(trajectory, 'dist', 'index.html'))
+    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'))
   );
 }
 
