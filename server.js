@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const bodyParser = require('body-parser');
 const path = require('path');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
@@ -11,11 +10,8 @@ const methodOverride = require('method-override');
 const connectDB = require('./config/db');
 
 const Event = require('./models/Event');
-const { pid } = require('process');
 
 const app = express();
-
-app.set('view engine', 'ejs');
 
 // Middleware
 app.use(express.json());
