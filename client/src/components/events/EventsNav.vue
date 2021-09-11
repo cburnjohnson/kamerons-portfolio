@@ -62,7 +62,6 @@ export default {
     list-style: none;
     flex-wrap: wrap;
     text-align: center;
-    border-bottom: 5px solid $pink;
   }
 
   &__names {

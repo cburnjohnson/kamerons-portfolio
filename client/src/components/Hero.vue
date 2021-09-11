@@ -5,7 +5,7 @@
         <div class="hero__container">
           <p class="hero__intro">Hi, I am</p>
           <div class="hero__portrait">
-            <img src="@/assets/portrait.png" alt="portrait" />
+            <img src="@/assets/portrait.webp" alt="portrait" />
           </div>
           <p class="hero__name">Kameron Holmberg</p>
           <p class="hero__text">Event planner</p>
@@ -87,13 +87,15 @@ export default {};
     color: $green;
     margin-left: 0.625rem;
     position: relative;
+    display: inline;
 
     &::before {
       content: "";
       position: absolute;
-      bottom: 5px;
+      bottom: 3px;
+      left: -5px;
       z-index: -1;
-      width: 3rem;
+      width: 60%;
       height: 0.35rem;
       background-color: $pink;
       opacity: 0.8;
@@ -192,7 +194,7 @@ export default {};
     border-radius: 1.2rem;
     margin-left: 158px;
     margin-top: 38px;
-    background-image: url("../assets/hero-img.png");
+    background-image: url("../assets/hero-img.webp");
     background-position: center;
     position: relative;
 
