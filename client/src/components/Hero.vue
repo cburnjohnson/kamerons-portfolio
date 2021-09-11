@@ -148,11 +148,11 @@ export default {};
       content: "";
       display: block;
       position: absolute;
-      top: -5px;
-      left: -6px;
+      top: -10px;
+      left: -10px;
       z-index: -10;
-      width: 90px;
-      height: 90px;
+      width: 100px;
+      height: 100px;
       background: radial-gradient(
         50% 50% at 50% 50%,
         rgba(247, 204, 192, 0.869019) 0%,
@@ -165,8 +165,10 @@ export default {};
       );
 
       @media ($md-up) {
-        width: 110px;
-        height: 110px;
+        top: -15px;
+        left: -15px;
+        width: 130px;
+        height: 130px;
       }
     }
   }
