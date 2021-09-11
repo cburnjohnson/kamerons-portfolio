@@ -99,6 +99,7 @@ export default {};
       height: 0.35rem;
       background-color: $pink;
       opacity: 0.8;
+      border-radius: 2px;
     }
   }
 
