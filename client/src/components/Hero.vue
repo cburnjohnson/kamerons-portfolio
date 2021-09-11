@@ -86,6 +86,18 @@ export default {};
     font-size: 1.125rem;
     color: $green;
     margin-left: 0.625rem;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 5px;
+      z-index: -1;
+      width: 3rem;
+      height: 0.35rem;
+      background-color: $pink;
+      opacity: 0.8;
+    }
   }
 
   &__name {
@@ -95,7 +107,7 @@ export default {};
     line-height: 0.875;
 
     @media ($md-up) {
-      font-size: 180px;
+      font-size: 10rem;
       margin-top: 1rem;
     }
   }
@@ -168,11 +180,6 @@ export default {};
     border-radius: 1.56rem;
     margin-top: 3rem;
     margin-left: auto;
-
-    @media ($md-up) {
-      padding: 20px 30px;
-      border-radius: 36.5px;
-    }
 
     &:hover {
       opacity: 0.8;

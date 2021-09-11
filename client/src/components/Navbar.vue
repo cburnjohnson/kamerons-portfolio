@@ -182,6 +182,10 @@ export default {
     @media ($md-up) {
       display: flex;
     }
+
+    a:hover {
+      color: $green;
+    }
   }
 
   .router-link-exact-active {
