@@ -9,10 +9,8 @@
           </div>
           <p class="hero__name">Kameron Holmberg</p>
           <p class="hero__text">Event planner</p>
-          <router-link to="/events">
-            <button class="hero__cta">
-              View Events
-            </button>
+          <router-link to="/events" class="hero__cta">
+            View Events
           </router-link>
         </div>
       </section>
@@ -175,7 +173,7 @@ export default {};
 
   &__cta {
     border: none;
-    display: block;
+    display: inline-block;
     cursor: pointer;
     color: $white;
     padding: 1rem 1.31rem;
@@ -184,7 +182,8 @@ export default {};
     font-weight: bold;
     border-radius: 1.56rem;
     margin-top: 3rem;
-    margin-left: auto;
+    text-align: right;
+    float: right;
 
     &:hover {
       opacity: 0.8;
