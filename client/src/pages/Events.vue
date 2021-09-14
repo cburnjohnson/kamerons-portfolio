@@ -95,7 +95,8 @@ export default {
   &__container {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: calc(100vh - 97px);
+    overflow: hidden;
 
     @media ($md-up) {
       flex-direction: row-reverse;

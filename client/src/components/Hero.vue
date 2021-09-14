@@ -30,7 +30,8 @@ export default {};
 <style lang="scss" scoped>
 .hero {
   position: relative;
-  height: 100%;
+  height: calc(100vh - 97px);
+  overflow: hidden;
 
   a {
     text-decoration: none;
