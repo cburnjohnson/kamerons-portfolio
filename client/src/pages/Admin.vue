@@ -49,7 +49,13 @@
             required
           />
         </div>
-        <input type="submit" value="UPLOAD" class="form-group__btn" />
+        <input
+          type="submit"
+          value="UPLOAD"
+          class="form-group__btn"
+          v-if="!uploading"
+        />
+        <p v-else>Uploading...</p>
       </form>
     </div>
     <div class="events">
@@ -75,11 +81,13 @@ export default {
     return {
       eventName: null,
       eventType: "birthday",
-      events: []
+      events: [],
+      uploading: false
     };
   },
   methods: {
     async addEvent() {
+      this.uploading = true;
       const { eventImages } = this.$refs;
 
       const eventImagesFiles = Array.from(eventImages.files);
@@ -97,6 +105,8 @@ export default {
         }
       });
 
+      this.uploading = false;
+      this.eventName = "";
       eventImages.value = null;
     },
     async deleteEvent(id) {
@@ -172,10 +182,11 @@ export default {
     justify-content: space-between;
     border-bottom: 1px solid $green;
     width: 80%;
-    margin: 0 auto 1rem auto;
+    margin: 0 auto 1.25rem auto;
 
     i {
       color: red;
+      font-size: 1.25rem;
     }
   }
 }
