@@ -59,6 +59,7 @@ html {
   }
 
   &__btn {
+    -webkit-appearance: none;
     display: inline-block;
     outline: none;
     border: none;

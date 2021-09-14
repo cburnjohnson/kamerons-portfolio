@@ -62,6 +62,7 @@ export default {
     list-style: none;
     flex-wrap: wrap;
     text-align: center;
+    border-bottom: 5px solid $pink;
   }
 
   &__names {
@@ -106,7 +107,7 @@ export default {
 
   &__type {
     width: calc(100% / 3);
-    padding: 0.5rem 0;
+    padding: 0.5rem 0.25rem;
     border-right: 2px solid $pink;
 
     &--active {

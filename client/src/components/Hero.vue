@@ -32,10 +32,6 @@ export default {};
   position: relative;
   height: 100%;
 
-  @media ($md-up) {
-    height: 100%;
-  }
-
   a {
     text-decoration: none;
   }

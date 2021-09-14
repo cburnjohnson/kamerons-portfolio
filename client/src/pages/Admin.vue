@@ -150,14 +150,14 @@ export default {
 }
 
 .events {
-  margin-top: 6rem;
+  margin-top: 5rem;
   background-color: $pink;
   width: 100%;
   padding: 1.5rem 1rem;
 
   @media (min-width: 400px) {
     width: 400px;
-    margin: 6rem auto;
+    margin: 5rem auto;
     border-radius: 1rem;
   }
 
@@ -170,8 +170,9 @@ export default {
     display: flex;
     color: $white;
     justify-content: space-between;
-    margin-bottom: 1rem;
     border-bottom: 1px solid $green;
+    width: 80%;
+    margin: 0 auto 1rem auto;
 
     i {
       color: red;
