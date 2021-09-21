@@ -7,7 +7,13 @@
         @selectEvent="selectEvent"
       />
       <div class="gallery-container" v-if="selectedEvent">
-        <h1 class="title">{{ selectedEvent.name }}</h1>
+        <h1 class="title">
+          {{
+            new Intl.DateTimeFormat("en-US").format(
+              new Date(selectedEvent.dateOfEvent)
+            )
+          }}
+        </h1>
         <div class="gallery">
           <img
             v-for="image in selectedImages"

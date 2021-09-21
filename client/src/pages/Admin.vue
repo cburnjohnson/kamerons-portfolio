@@ -5,14 +5,16 @@
       <form class="admin__form" @submit.prevent="addEvent">
         <div class="form-group">
           <input
-            type="text"
-            id="name"
+            type="date"
+            id="dateOfEvent"
             class="form-group__input"
             placeholder=" "
-            v-model="eventName"
+            v-model="dateOfEvent"
             required
           />
-          <label for="name" class="form-group__label">Name of Event</label>
+          <label for="dateOfEvent" class="form-group__label"
+            >Date of Event</label
+          >
         </div>
         <h3>Type of Event</h3>
         <div class="form-group form-group--radio">
@@ -62,7 +64,13 @@
       <h2 class="events__title">List of Events</h2>
       <ul class="events__list">
         <li class="events__list-item" v-for="event in events" :key="event._id">
-          <p class="event">{{ event.name }}</p>
+          <p class="event">
+            {{
+              new Intl.DateTimeFormat("en-US").format(
+                new Date(event.dateOfEvent)
+              )
+            }}
+          </p>
           <button class="button button--delete" @click="deleteEvent(event._id)">
             <i class="fas fa-trash-alt"></i>
           </button>
@@ -79,7 +87,7 @@ import getEvents from "@/utils/getEvents";
 export default {
   data() {
     return {
-      eventName: null,
+      dateOfEvent: null,
       eventType: "birthday",
       events: [],
       uploading: false
@@ -96,7 +104,7 @@ export default {
         formData.append("files", file);
       });
 
-      formData.append("eventName", this.eventName);
+      formData.append("dateOfEvent", this.dateOfEvent);
       formData.append("eventType", this.eventType);
 
       await axios.post("upload", formData, {
@@ -106,7 +114,7 @@ export default {
       });
 
       this.uploading = false;
-      this.eventName = "";
+      this.dateOfEvent = "";
       eventImages.value = null;
     },
     async deleteEvent(id) {

@@ -71,11 +71,11 @@ app.use('/api/events', require('./routes/events'));
 app.post('/upload', upload.array('files', 20), async (req, res) => {
   const fileNames = req.files.map((file) => file.filename);
 
-  const { eventName, eventType } = req.body;
+  const { dateOfEvent, eventType } = req.body;
 
   try {
     const newEvent = new Event({
-      name: eventName,
+      dateOfEvent: dateOfEvent,
       type: eventType,
       images: fileNames,
     });

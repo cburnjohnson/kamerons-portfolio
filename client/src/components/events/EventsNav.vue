@@ -23,7 +23,11 @@
         :key="eventByType.id"
         @click="$emit('selectEvent', eventByType)"
       >
-        {{ eventByType.name }}
+        {{
+          new Intl.DateTimeFormat("en-US").format(
+            new Date(eventByType.dateOfEvent)
+          )
+        }}
       </li>
     </ul>
   </div>
