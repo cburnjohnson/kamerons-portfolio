@@ -107,7 +107,7 @@ export default {
       formData.append("dateOfEvent", this.dateOfEvent);
       formData.append("eventType", this.eventType);
 
-      await axios.post("upload", formData, {
+      const eventResponse = await axios.post("upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
@@ -116,6 +116,7 @@ export default {
       this.uploading = false;
       this.dateOfEvent = "";
       eventImages.value = null;
+      this.events = [...this.events, eventResponse.data];
     },
     async deleteEvent(id) {
       await axios.delete(`/api/events/${id}`);
