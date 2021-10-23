@@ -25,6 +25,7 @@
               name="typeOfEvent"
               value="birthday"
               v-model="eventType"
+              id="birthday"
             />
           </div>
           <div class="form-group__child">
@@ -34,6 +35,47 @@
               name="typeOfEvent"
               value="wedding"
               v-model="eventType"
+              id="wedding"
+            />
+          </div>
+          <div class="form-group__child">
+            <label for="babyShower">Baby Shower</label>
+            <input
+              type="radio"
+              name="typeOfEvent"
+              value="baby shower"
+              v-model="eventType"
+              id="babyShower"
+            />
+          </div>
+          <div class="form-group__child">
+            <label for="retirement">Retirement</label>
+            <input
+              type="radio"
+              name="typeOfEvent"
+              value="retirement"
+              v-model="eventType"
+              id="retirement"
+            />
+          </div>
+          <div class="form-group__child">
+            <label for="graduation">Graduation</label>
+            <input
+              type="radio"
+              name="typeOfEvent"
+              value="graduation"
+              v-model="eventType"
+              id="graduation"
+            />
+          </div>
+          <div class="form-group__child">
+            <label for="holidayParty">Holiday Party</label>
+            <input
+              type="radio"
+              name="typeOfEvent"
+              value="holiday party"
+              v-model="eventType"
+              id="holidayParty"
             />
           </div>
         </div>
@@ -159,6 +201,7 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 1rem;
     margin: 0.5rem 0;
 
