@@ -151,7 +151,8 @@ export default {
 
       const eventResponse = await axios.post("upload", formData, {
         headers: {
-          "Content-Type": "multipart/form-data"
+          "Content-Type": "multipart/form-data",
+          "x-auth-token": window.localStorage.getItem("userToken")
         }
       });
 
@@ -161,7 +162,11 @@ export default {
       this.events = [...this.events, eventResponse.data];
     },
     async deleteEvent(id) {
-      await axios.delete(`/api/events/${id}`);
+      await axios.delete(`/api/events/${id}`, {
+        headers: {
+          "x-auth-token": window.localStorage.getItem("userToken")
+        }
+      });
       this.events = this.events.filter(event => event._id !== id);
     }
   },

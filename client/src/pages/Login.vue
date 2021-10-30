@@ -5,12 +5,12 @@
         <input
           class="form-group__input"
           type="text"
-          name="username"
-          id="username"
+          name="email"
+          id="email"
           placeholder=" "
-          v-model="username"
+          v-model="email"
         />
-        <label for="username" class="form-group__label">Username</label>
+        <label for="email" class="form-group__label">email</label>
       </div>
       <div class="form-group">
         <input
@@ -29,24 +29,27 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
-      username: null,
+      email: null,
       password: null
     };
   },
   methods: {
-    onLogin() {
-      if (
-        process.env.VUE_APP_USERNAME === this.username &&
-        process.env.VUE_APP_PASSWORD === this.password
-      ) {
+    async onLogin() {
+      try {
+        const data = await axios.post("/api/auth", {
+          email: this.email,
+          password: this.password
+        });
         const localStorage = window.localStorage;
-        localStorage.setItem("userAuthenticated", true);
+        localStorage.setItem("userToken", data.data.token);
         this.$router.push({ name: "Admin" });
-      } else {
-        console.log("error");
+      } catch (error) {
+        console.error(error);
       }
     }
   }

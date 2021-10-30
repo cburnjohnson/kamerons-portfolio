@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const getImage = require('../utils/getImage');
 const removeImage = require('../utils/removeImage');
+const auth = require('../middleware/auth');
 
 const Event = require('../models/Event');
 
@@ -21,7 +22,7 @@ router.get('/', async (req, res) => {
 // @route   DELETE /api/events/:id
 // @desc    Delete an event with its images
 // @access  Private
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   try {
     let event = await Event.findById(req.params.id);
 

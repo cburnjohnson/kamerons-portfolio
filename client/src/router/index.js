@@ -4,6 +4,7 @@ import Home from '@/pages/Home';
 import Events from '@/pages/Events';
 import Login from '@/pages/Login';
 import Admin from '@/pages/Admin';
+import axios from 'axios';
 
 Vue.use(Router);
 
@@ -28,10 +29,17 @@ export default new Router({
       path: '/admin',
       name: 'Admin',
       component: Admin,
-      beforeEnter(to, from, next) {
-        if (window.localStorage.getItem('userAuthenticated')) {
+      async beforeEnter(to, from, next) {
+        try {
+          await axios.get('/api/auth', {
+            headers: {
+              'x-auth-token': window.localStorage.getItem('userToken')
+            }
+          });
+
           next();
-        } else {
+        } catch (error) {
+          console.error(error);
           next({
             name: 'Login'
           });

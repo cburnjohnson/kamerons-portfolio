@@ -8,6 +8,7 @@ const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 const methodOverride = require('method-override');
 const connectDB = require('./config/db');
+const auth = require('./middleware/auth');
 
 const Event = require('./models/Event');
 
@@ -64,11 +65,13 @@ const upload = multer({ storage });
 
 // Routes
 app.use('/api/events', require('./routes/events'));
+app.use('/api/auth', require('./routes/auth'));
+// app.use('/api/users', require('./routes/users'));
 
 // @route POST /upload
 // @desc Uploads file to DB
 // can upload multiple files
-app.post('/upload', upload.array('files', 20), async (req, res) => {
+app.post('/upload', [auth, upload.array('files', 20)], async (req, res) => {
   const fileNames = req.files.map((file) => file.filename);
 
   const { dateOfEvent, eventType } = req.body;
