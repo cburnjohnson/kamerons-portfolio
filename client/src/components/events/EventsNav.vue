@@ -17,7 +17,7 @@
       <li
         :class="[
           'events__name',
-          { 'events__name--active': selectedEvent.name === eventByType.name }
+          { 'events__name--active': selectedEvent.date === eventByType.date }
         ]"
         v-for="eventByType in eventsByType"
         :key="eventByType.id"
@@ -67,6 +67,7 @@ export default {
     flex-wrap: wrap;
     text-align: center;
     border-bottom: 5px solid $pink;
+    word-break: break-word;
   }
 
   &__names {
@@ -113,6 +114,12 @@ export default {
     width: calc(100% / 3);
     padding: 0.5rem 0.25rem;
     border-right: 2px solid $pink;
+
+    @media ($md-up) {
+      &:nth-child(1n + 4) {
+        border-top: 2px solid $pink;
+      }
+    }
 
     &--active {
       background-color: $pink;
