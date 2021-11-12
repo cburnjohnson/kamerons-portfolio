@@ -5,7 +5,11 @@
         <div class="hero__container">
           <p class="hero__intro">Hi, I am</p>
           <div class="hero__portrait">
-            <img src="@/assets/portrait.webp" alt="portrait" />
+            <img
+              class="hero__portrait-img"
+              src="@/assets/portrait.webp"
+              alt="portrait"
+            />
           </div>
           <p class="hero__name">Kameron Holmberg</p>
           <p class="hero__text">Event planner</p>
@@ -69,6 +73,10 @@ export default {};
       max-width: 800px;
       margin: 0 auto;
     }
+  }
+
+  &__portrait-img {
+    border-radius: 50%;
   }
 
   &__right {
