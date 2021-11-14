@@ -6,7 +6,7 @@
         :selectedEvent="selectedEvent"
         @selectEvent="selectEvent"
       />
-      <div class="gallery-container" v-if="selectedEvent">
+      <div class="gallery-container" v-if="selectedEvent && !loadingImages">
         <h1 class="title">
           {{
             new Intl.DateTimeFormat("en-US").format(
@@ -25,6 +25,7 @@
           />
         </div>
       </div>
+      <LoadingSpinner v-else />
     </div>
     <div class="popup" ref="popup" @click="closePopup">
       <img src="" alt="" class="popup__img" ref="popupImg" />
@@ -36,17 +37,20 @@
 import axios from "axios";
 import { Fragment } from "vue-fragment";
 import EventsNav from "@/components/events/EventsNav";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 export default {
   components: {
     Fragment,
-    EventsNav
+    EventsNav,
+    LoadingSpinner
   },
   data() {
     return {
       events: [],
       selectedEvent: null,
-      selectedImages: []
+      selectedImages: [],
+      loadingImages: true
     };
   },
   created() {
@@ -86,10 +90,13 @@ export default {
   watch: {
     selectedEvent() {
       this.selectedImages = [];
+
       this.selectedEvent.images.forEach(async image => {
+        this.loadingImages = true;
         const res = await this.getImage(image);
 
         this.selectedImages = [...this.selectedImages, res];
+        this.loadingImages = false;
       });
     }
   }
